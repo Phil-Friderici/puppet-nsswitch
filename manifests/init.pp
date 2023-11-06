@@ -106,15 +106,6 @@ class nsswitch (
   Variant[String, Array] $gshadow    = [],
   Variant[String, Array] $sudoers    = [],
 ) {
-  case $facts['os']['name'] {
-    /AlmaLinux|CentOS|RedHat|Rocky|Amazon|OEL|OracleLinux|Scientific|CloudLinux|Fedora|
-    |Ubuntu|Debian|SLES|Solaris|Gentoo|FreeBSD|LinuxMint|Archlinux/: {
-    }
-    default: {
-      fail("${$facts['os']['name']} is not a supported operating system.")
-    }
-  }
-
   file { 'nsswitch.conf':
     ensure  => file,
     path    => $file_path,
